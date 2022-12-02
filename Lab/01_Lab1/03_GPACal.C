@@ -6,6 +6,9 @@ int main(){
     int credit = 18;
     float requiredGrade = 2.00;
 
-    float shouldGrade = requiredGrade-(preGrade*(preCredit+credit));
-    
+    float preGPA = preGrade*preCredit;
+    int totalCredit = preCredit + credit;
+ 
+    float ReqGPATerm = ((requiredGrade*totalCredit)-preGPA)/credit;
+    printf("The GPA this semester should be %.2f", ReqGPATerm);
 }
