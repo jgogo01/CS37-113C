@@ -1,28 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
-    char numStr[10];
-    int num = 0;
-    int start = 0;
-    int end = 0;
+int main() {
+    int x, y;
+    int min, max, mod, gcd;
+    char xStr[20], yStr[20];
 
-    fgets(numStr, 10, stdin);
-    num = atoi(numStr);
-    if(num > 26 || num <= 0){
-      printf("-");
-    }else if(num == 1){
-      printf("a");
+    fgets(xStr, 20, stdin);
+    fgets(yStr, 20, stdin);
+
+    x = atoi(xStr);
+    y = atoi(yStr);
+    //Cal
+    if(x > y){
+      min = y;
+      max = x;
     }else{
-      //Start
-      for(int i = num+96; i > 97; --i){
-        printf("%c-", i);
-      }
-      //Center
-      printf("a");
-      //End
-      for(int i = 98; i < num+97; ++i){
-        printf("-%c", i);
-      }
+      min = x;
+      max = y;
     }
+
+    while(1){
+      mod = max%min;
+      if(mod == 0){
+        break;
+      }
+      max = min;
+      min = mod;
+    }
+    gcd = min;
+    
+    //Res
+    printf("= %d", x/gcd);
+    (y/gcd != 1) ? printf("/%d",y/gcd) : printf("");
 }
+  

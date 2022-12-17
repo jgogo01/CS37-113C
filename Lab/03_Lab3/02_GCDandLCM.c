@@ -2,18 +2,18 @@
 #include <stdlib.h>
 
 int main() {
-    int x, y;
-    int min, max, mod, gcd;
-    char xStr[10], yStr[10];
+    long long x, y;
+    long long min, max, mod, gcd;
+    char xStr[20], yStr[20];
 
-    fgets(xStr, 10, stdin);
-    fgets(yStr, 10, stdin);
+    fgets(xStr, 20, stdin);
+    fgets(yStr, 20, stdin);
 
-    x = atoi(xStr);
-    y = atoi(yStr);
+    x = atoll(xStr);
+    y = atoll(yStr);
 
     //Cal
-    if(x >= y){
+    if(x > y){
       min = y;
       max = x;
     }else{
@@ -21,15 +21,16 @@ int main() {
       max = y;
     }
     
-    while(0){
+    while(1){
+      mod = max%min;
       if(mod == 0){
         break;
       }
-      mod = max%min;
       max = min;
       min = mod;
     }
     gcd = min;
-    printf("GCD : %d", gcd);
+    printf("GCD: %lld\n", gcd);
+    printf("LCM: %lld", (x*y)/gcd);
 }
   
