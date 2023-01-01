@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>radius</title>
+	<style type="text/css">
+		*
+		{
+			font-family: Consolas;
+		}
+	</style>
+	<script type="text/javascript">
+		dn = (locat) => {
+			return document.getElementById(locat);
+		}
+		gen = (val) => {
+			var rad 	= val-1; //รัศมี
+			var dia		= rad*2; //เส้นผ่าน
+			var nrow 	= 0; //บรรทัด
+			var loca 	= rad; //ตำแหน่งขอบ เริ่มที่ระยะรัศมี 
+			var char 	= "abcdefghijklmnopqrstuvwxyz";
+			for(nrow=0;nrow<=dia;nrow++)
+			{
+
+				if(nrow<dia/2)
+				{
+					let colu = 0;//คอลัมม์
+					let lent = rad - loca ; //หาระยะจากขอบถึงกึ่งกลาง 
+					let ixc  = rad; // ลำดับการแสดงตัวอักษร โดยเริ่มจากหลังสุดก่อน คือขอบรัศมี
+					for(colu=0;colu<=dia;colu++) // คอลัม น้อยกว่า เส้นผ่าน
+					{
+						if(colu<rad&&colu>=loca)//คอลัม < รัศมีหรือกึ่งกลาง และ คอลัม >= ระยะขอบ
+						{
+							pntf(char.charAt(ixc)); // เรียกตัวหนังสือมาแสดง
+							ixc--; //ตัวอักษรต่อไปต้องลำดับ ลดลง
+						}
+						else if(colu>=rad&&colu<=rad+lent) 
+						//คอลัม >= กึ่งกลาง(ระยะรัศมี) และ น้อยกว่า ระยะขอบด้านหลัง(กึ่งกลาง + ระยะขอบห่างจากกึ่งกลาง)
+						{		
+							pntf(char.charAt(ixc));
+							ixc++; //ตัวอักษรต่อไปหลังจากกึ่งกลางต้องลำดับ เพิ่ม
+						}
+						else
+						{
+							pntf('-');  // ไม่ได้อยู่ใน รัศมี
+						}
+
+						if(colu!=dia)
+						{
+							pntf('-');
+						}
+						
+					}
+					loca--;
+				}
+				else
+				{
+					let colu = 0;//คอลัมม์
+					let lent = rad - loca ; //หาระยะจากขอบถึงกึ่งกลาง 
+					let ixc  = rad; // ลำดับการแสดงตัวอักษร โดยเริ่มจากหลังสุดก่อน คือขอบรัศมี
+					for(colu=0;colu<=dia;colu++) // คอลัม น้อยกว่า เส้นผ่าน
+					{
+						if(colu<rad&&colu>=loca)//คอลัม < รัศมีหรือกึ่งกลาง และ คอลัม >= ระยะขอบ
+						{
+							pntf(char.charAt(ixc)); // เรียกตัวหนังสือมาแสดง
+							ixc--; //ตัวอักษรต่อไปต้องลำดับ ลดลง
+						}
+						else if(colu>=rad&&colu<=rad+lent) 
+						//คอลัม >= กึ่งกลาง(ระยะรัศมี) และ น้อยกว่า ระยะขอบด้านหลัง(กึ่งกลาง + ระยะขอบห่างจากกึ่งกลาง)
+						{		
+							pntf(char.charAt(ixc));
+							ixc++; //ตัวอักษรต่อไปหลังจากกึ่งกลางต้องลำดับ เพิ่ม
+						}
+						else
+						{
+							pntf('-');  // ไม่ได้อยู่ใน รัศมี
+						}
+
+						if(colu!=dia)
+						{
+							pntf('-');
+						}
+						
+					}
+					loca++;
+				}
+				
+
+				pntf('<br>');
+			}
+		}
+		pntf = (res) => {
+			dn('res').innerHTML+=res;
+		}
+	</script>
+</head>
+<body>
+	radius : <input type="number" id='radius' onchange='gen(this.value)'>
+	<button onchange="gen(document.getElementById('radius').value)">gen</button>
+	<div id='res' style="padding-top:50px;"></div>
+</body>
+</html>
