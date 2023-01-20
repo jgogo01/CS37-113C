@@ -1,1 +1,6 @@
 .DS_Store
+main
+main.c
+.replit
+replit.nix
+.ccls-cache
