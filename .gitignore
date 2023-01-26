@@ -4,3 +4,4 @@ main.c
 .replit
 replit.nix
 .ccls-cache
+.breakpoints
